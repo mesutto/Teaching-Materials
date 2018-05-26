@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>Solar-Log™</title>
+<link rel="SHORTCUT ICON" href="favicon.ico">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style> /* content of reset.css */
+			html, body, div, span, applet, object, iframe,
+			h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+			a, abbr, acronym, address, big, cite, code,
+			del, dfn, em, font, img, ins, kbd, q, s, samp,
+			small, strike, strong, sub, sup, tt, var,
+			dl, dt, dd, ol, ul, li,
+			fieldset, form, label, legend,
+			table, caption, tbody, tfoot, thead, tr, th, td
+			{
+				margin: 0;
+				padding: 0;
+				border: 0;
+				outline: 0;
+				font-weight: inherit;
+				font-style: inherit;
+				font-size: 100%;
+				font-family: inherit;
+				vertical-align: baseline;
+			}
+			:focus { outline: 0; }
+			body { line-height: 16px; color: black; background: white; }
+			ol, ul { list-style: none; }
+			table { border-collapse: separate; border-spacing: 0; }
+			caption, th, td { text-align: left; font-weight: normal; }
+			blockquote:before, blockquote:after,
+			q:before, q:after { content: ""; }
+			blockquote, q { quotes: "" ""; }
+			sup { vertical-align: super; }
+		</style>
+<style> /* important content of main.css so frontend looks nice before main.css is loaded */
+			.c_toggleHeaderViewport { float:right !important; margin:11px 0px 0px 0px !important; }
+
+			html
+			{
+				display: block;
+				width: 100%;
+				min-height: 100%;
+				height: 100%;
+			}
+
+			body
+			{
+				display: block;
+				width: 100%;
+				min-height: 100%;
+				height: 100%; /* this causes a vertical scrolling even if not necessary??? */
+				margin: 0;
+				padding: 0;
+				font-family: "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", Helvetica, Corbel, Arial, sans-serif;
+				font-size: 16px;
+				position: relative;
+				background-color: #FFFFFF;
+			}
+
+			#header_body
+			{
+				background: #fff url(0/images/mainnav_header_bg.gif) repeat-x 0 0px;
+			}
+
+			/* Header */
+			#header_container
+			{
+				position: relative;
+				z-index: 5;
+				width: 100%;
+				height: 203px;
+				padding: 0;
+			}
+
+			#header
+			{
+				height: 100%;
+				width: 1074px;
+				margin: 0 auto;
+				padding: 0;
+				position: relative;
+				z-index: 3;
+			}
+
+			#logo_header_text_container
+			{
+				position: relative;
+				height: 157px;
+				float: left;
+				z-index: 6;
+			}
+
+			/* Header text */
+			#header_text_container
+			{
+				width: 620px;
+				height: 100%;
+				margin: 0 0 0 270px;
+				position: relative;
+				z-index: 6;
+				display: table;
+			}
+
+			#header_text
+			{
+				padding: 0;
+				display: table-cell;
+				vertical-align: middle;
+			}
+
+			#header_text .headline
+			{
+				text-align: center;
+				color: #1a1a1a;
+				font-weight: bold;
+				font-size: 29px;
+				line-height: 1.325em;
+				margin: 0 0 0 0;
+			}
+
+			/* the navigations in top of page including main + metanav */
+			#nav_container
+			{
+				height: 41px;
+				width: 100%;
+				position: relative;
+				z-index: 20;
+				margin-bottom: 4px;
+			}
+
+			#nav { padding: 0; }
+			#nav ul { float: left; }
+			#nav ul li.level1
+			{
+				float: left;
+				padding-top: 5px;
+				padding: 5px 3px 0 1px;
+			}
+			#nav ul li.level1 a { cursor: pointer; }
+
+			/* Small logo */
+			.small_logo
+			{
+				padding: 5px 15px 5px 2px;
+				margin-top: 6px;
+				float: left;
+			}
+
+
+			/* all navs */
+			#nav li { font-size: 13px; }
+			#nav li a
+			{
+				text-decoration: none;
+				color: #333;
+				display: block;
+			}
+			#nav li a span
+			{
+				display: block;
+				float: left;
+				padding: 5px 12px 12px 10px;
+			}
+			/* Level 1 */
+			#nav li.level1
+			{
+				float: left;
+				text-transform: uppercase;
+				font-weight: bold;
+				position: relative;
+			}
+			#nav li.level1 a.level1
+			{
+				float: left;
+				margin: 2px 1px 0 2px;
+				position: relative;
+			}
+
+			/* Language-Nav */
+			#nav #language_nav
+			{
+				position: relative;
+				z-index: 10;
+			}
+			#nav #language_nav li.level1
+			{
+				text-transform: none;
+				font-weight: normal;
+				padding-bottom: 4px;
+			}
+			#nav #language_nav li.level1 a.level1
+			{
+				margin: 0;
+			}
+			#nav #language_nav li.level1 a.level1 span
+			{
+				padding: 8px 13px 7px 4px;
+			}
+			#nav #language_nav li.level1 a.level1 span.short
+			{
+				background: transparent url(0/images/language_nav_arrow.gif) no-repeat right 6px;
+				padding: 0 14px 0 0;
+				float: none;
+				display: inline;
+			}
+			#nav #language_nav .sub_level { left: 0; }
+
+			/* Level 2 */
+			#nav .sub_level
+			{
+				position: absolute;
+				display: none;
+				z-index: 9;
+				top: 40px;
+				left: -3px;
+				width: 194px;
+			}
+
+			/* Logo */
+			#logo_container
+			{
+				position: relative;
+				float: left;
+				display: table;
+				vertical-align: middle;
+				text-align: center;
+				top: 0px;
+				left: 0px;
+				z-index: 10;
+				height: 157px;
+				width: 220px;
+			}
+			#logo_container_right
+			{
+				height: 60px;
+				position: absolute;
+				right: 0;
+				top: 100px;
+				width: 200px;
+				z-index: 10;
+			}
+			#logo,
+			#logo_container .product_image
+			{
+				display: table-cell;
+				vertical-align: middle;
+				text-align: center;
+				height: 100%;
+				width: 220px;
+			}
+			#logo_container .product_image
+			{
+				padding-top: 14px;
+			}
+			#logo a,
+			#logo_container .product_image a
+			{
+				display: inline-block;
+				vertical-align: middle;
+				text-align: center;
+				width: 100%;
+				text-decoration: none;
+			}
+
+			/* Body */
+			#body_container
+			{
+				height: auto !important;
+				min-height: 100%;
+				position: relative;
+				z-index: 4;
+				background-color: #FFFFFF;
+				padding: 6px 0 0 0;
+				width: 100%;
+			}
+
+			#body
+			{
+				padding: 6px 0 0px 0;
+				margin: 0 auto 0 auto;
+				position: relative;
+				background: #ffffff url(0/images/body_bg.png) repeat-x scroll 0 0;
+				background-color: #FFFFFF;
+				min-height: 100%;
+				height: auto !important;
+				height: 150px;
+				width: 100%;
+				z-index: 2;
+			}
+
+			/* Multi function container on the left side of content, i.e. for subnav */
+			#multi_function_container
+			{
+				width: 212px;
+				float: left;
+				box-shadow: 0 0 5px rgba(0,0,0,0.5);
+				border-radius: 5px;
+				background: #fff;
+			}
+
+			/* Main container */
+			#main_container
+			{
+				margin: 0;
+				z-index: 1;
+				position: relative;
+				width: 100%;
+				min-height: 584px;
+			}
+
+			#main
+			{
+				margin: 0 auto 0 auto;
+				padding: 29px 6px 40px 6px;
+				color: #333;
+				width: 1062px;
+			}
+
+			#content_container
+			{
+				width: 820px;
+				padding: 0;
+				float: right;
+				margin: 0;
+				padding: 1px 0 0 0;
+				position: relative;
+				background: #fff;
+				box-shadow: 0 0 5px rgba(0,0,0,0.5);
+				border-radius: 5px;
+			}
+
+			#content
+			{
+				padding: 0px 25px 25px 25px;
+				position: relative;
+				z-index: 2;
+			}
+
+			#footer_container
+			{
+				bottom: 0;
+				height: 42px;
+				position: fixed;
+				width: 100%;
+				z-index: 100000;
+				background: #003A6F;
+				border-top: 5px solid #ebebeb;
+			}
+
+			#footer
+			{
+				z-index: 2;
+				position: relative;
+				max-width: 1082px;
+				min-width: 540px;
+				width: 100%;
+				height: 31px;
+				margin: 0 auto;
+			}
+			#servicenav_container { padding: 0 20px; }
+			#copyright
+			{
+				float: left;
+				font-size: 11px;
+				color: #fff;
+				padding: 11px 0 0 0;
+			}
+			#copyright a { color: #fff; }
+
+			li { list-style-type: none; }
+		</style>
+<style> /* important content of content.css so frontend looks nice before main.css is loaded */
+			.standard_form fieldset,
+			.standard_form .fieldset
+			{
+				margin: 0px 0 0 0;
+				padding: 18px 13px 23px 13px;
+				border-bottom: 1px solid #ccc;
+			}
+
+			.edit_form_tab_content,
+			.record_item_edit_form .edit_form_tab_content,
+			.standard_form .edit_form_tab_content
+			{
+				background: linear-gradient(#e3e4e6, white 333px, white);
+				border: 1px solid #ccc;
+				border-bottom: none;
+				display: none;
+				top: -4px;
+				position: relative;
+				z-index: 2;
+			}
+
+			.edit_form_tab_content_container .active,
+			.record_item_edit_form .active,
+			.standard_form .active
+			{
+				display: block;
+			}
+
+			#content.pageview{ margin-top: 21px; }
+
+			.save_layer_container
+			{
+				height: 100%;
+				width: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 200;
+				vertical-align: middle;
+			}
+
+			.save_layer
+			{
+				vertical-align: middle;
+				height: 100%;
+				width: 100%;
+			}
+
+			.save_layer .transparent_background
+			{
+				-moz-opacity: 0.50;
+				opacity: 0.50;
+				filter: alpha(opacity=50);
+				background: #033e7b;
+				height: 100%;
+				width: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 1;
+			}
+
+			.loadingIcon
+			{
+				background: url("0/images/spinner_white.gif") no-repeat center center / 128px 128px rgba(0, 0, 0, 0);
+				width: 128px;
+				height: 128px;
+			}
+			.loadingIconFullsize
+			{
+				background: url("0/images/spinner_blue.gif") no-repeat center center / 200px 200px rgba(0, 0, 0, 0);
+				width: 100%;
+				height: 100%;
+				z-index: 2;
+				position: relative;
+				margin: auto;
+			}
+		</style>
+
+<!--[if lt IE 9]><script language="javascript" type="text/javascript" src="excanvas.js"></script><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=2, minimum-scale=0.5">
+<script>var SLTyp="",SLHW=0,SLCF=0,SLLC=0,SLDF=0,SLSCB=[],SLSerial="00000000",OEMType=0,SubOEMType=0;var lbl_collector=[],rb=[],active_language="DE";var CurrencySign="DM";var DateFormat="dd.mm.yy",TimeFormat="HH:MM:ss",TimeNosecFormat="HH:MM";var tabs_to_hide=0;var lok=true;var EasyDone=false,EasyRunning=false;var diagramDate=new Date();var fadetime=0;var FormIsModified=false,FormOrigData={},FormHasErrors=false,FormHasErrorsManual=false;var FormPreVal="none",FormPostVal="none";var WelcomeTimer=0,WelcomeLang=0;var mpagecallback;var async_counter=0;var sollMonth=[],curAnlagenKWP,sollYearKWP;var indate=new Date();var loggedin=0,login_level=0,access_level=0,SubmitHaddFields;var T_M=new Array(31,28,31,30,31,30,31,31,30,31,30,31);var _pw_warning_displayed=false;var sl_task_active=0;function lcdcallback(tlcddat){if(tlcddat===undefined){return}var lcddat=JSON.parse(tlcddat);if(lcddat[794]===undefined){return}for(var i=0;i!=16;i++){LCDState[i][0]=lcddat[794][0][i][0];LCDState[i][1]=lcddat[794][0][i][1]}$("#timeshort").html(lcddat[701])};</script>
+</head>
+<body id="top">
+<div id="full_page_loader">
+<div id="fullsize_loader" class="save_layer_container">
+<div class="save_layer">
+<div class="transparent_background"></div>
+<div class="loadingIconFullsize"></div>
+</div>
+</div>
+</div>
+<div id="page_container">
+<div id="page" class="default">
+<div id="header_body_container">
+<div id="header_body">
+<div id="header_container">
+<div class="item_tools c_toggleHeaderViewport">
+<div class="notification_bar" id="notificationBar"></div>
+<a id="toggle_banner_icon" class="icon icon_header_off" onclick="toggleHeaderViewport()" href="#"></a>
+</div>
+<div id="header">
+<div id="nav_container">
+<div id="nav">
+<a class="small_logo" title="Zur Herstellerseite" href="http://www.solar-log.com/"><img src="0/images/small_logo.png" alt="Solar-Log™"></a>
+
+<ul id="language_nav" class="level1">
+<li class="level1 hasSub language"><a class="level1" href="#"><span><span class="SDSI18N short" name="L_OLANG">Deutsch</span></span></a>
+<div class="sub_level">
+<div>
+<ul class="level2">
+<li class="level2"><a class="level2 SDSI18N L_OEM preventlink" l_oem_nr="1" name="L_OLANG_GERMAN" href="#" lang="DE">Deutsch - Deutsch</a></li>
+<li class="level2"><a class="level2 SDSI18N L_OEM preventlink" l_oem_nr="2" name="L_OLANG_ENGLISH" href="#" lang="EN">Englisch - English</a></li>
+<li class="level2"><a class="level2 SDSI18N L_OEM preventlink" l_oem_nr="5" name="L_OLANG_SPANISH" href="#" lang="ES">Spanisch - Español</a></li>
+<li class="level2"><a class="level2 SDSI18N L_OEM preventlink" l_oem_nr="6" name="L_OLANG_FRENCH" href="#" lang="FR">Französisch - Français</a></li>
+<li class="level2"><a class="level2 SDSI18N L_OEM preventlink" l_oem_nr="3" name="L_OLANG_ITALIAN" href="#" lang="IT">Italienisch - Italiano</a></li>
+<li class="level2"><a class="level2 SDSI18N L_OEM preventlink" l_oem_nr="4" name="L_OLANG_DUTCH" href="#" lang="NL">Niederländisch - Nederlands</a></li>
+<li class="level2"><a class="level2 SDSI18N L_OEM preventlink" l_oem_nr="7" name="L_OLANG_DANISH" href="#" lang="DK">Dänisch - Dansk</a></li>
+<li class="level2"><a class="level2 SDSI18N L_OEM preventlink" l_oem_nr="8" name="L_OLANG_JAPANESE" href="#" lang="JP">Japanisch - 日本語</a></li>
+<li class="level2"><a class="level2 SDSI18N L_OEM preventlink" l_oem_nr="9" name="L_OLANG_TURKISH" href="#" lang="TR">Türkisch - Türkçe</a></li>
+<li class="level2"><a class="level2 SDSI18N L_OEM preventlink" l_oem_nr="10" name="L_OLANG_CHINESE" href="#" lang="ZH">Chinesisch - 中国的</a></li>
+<li class="level2"><a class="level2 SDSI18N L_OEM preventlink" l_oem_nr="11" name="L_OLANG_POLISH" href="#" lang="PL">Polnisch - Polski</a></li>
+</ul>
+</div>
+</div>
+</li>
+</ul>
+
+<ul id="mainnav" class="level1" style="display:none">
+<li class="level1 mainnav_active production" data="p">
+<a class="level1" href="#">
+<span class="SDSI18N" name="L_YIELDDATA">Ertragsdaten</span>
+</a>
+</li>
+<li class="level1 diagnostics" data="d">
+<a class="level1" href="#">
+<span class="SDSI18N" name="L_DIAGNOSIS">Diagnose</span>
+</a>
+</li>
+<li class="level1 configuration" data="c">
+<a class="level1" href="#">
+<span class="SDSI18N" name="L_CONFIGURATION">Konfiguration</span>
+</a>
+</li>
+</ul>
+<div class="CLEAR"></div>
+</div>
+</div>
+<div id="logo_container_right">
+<p id="logo"><a title="Zur Herstellerseite" href="http://www.solar-log.com/"><img src="0/images/logo.png" alt="Solar-Log™"></a></p>
+</div>
+<div id="logo_header_text_container">
+<div id="product_image_container">
+<div id="logo_container">
+<a id="homebutton" class="product_image" title="Zur Startseite" href="http://solar-log/"><img alt="Device Image" src="img?i=images/devimage.png" height="170"></a>
+</div>
+</div>
+<div id="header_text_container">
+<div id="header_text">
+<h1 class="headline"><span class="SDSI18N" name="L_WELCOMEMAIN">Willkommen im Hauptmenü <br>des Solar-Log <span id="HWTYP"></span> <span id="HWTEXT"></span></span></h1>
+</div>
+</div>
+<div class="CLEAR"></div>
+</div>
+</div>
+</div>
+<div id="body_container">
+<div id="body" class="custom_style">
+<div id="main_container">
+<div id="main">
+<div id="multi_function_container">
+<input id="current_page" name="current_page" value="1" type="hidden">
+<div id="multi_function">
+<div id="subnav_container">
+<div id="subnav">
+<div id="lcddiv" class="c_lcddiv">
+<canvas height="60" width="100" class="round_box_shadow c_lcdcanvas" id="jh_lcd_display3"></canvas>
+<p id="timeshort" style="font-size:8px;width:100px;text-align:center;"></p>
+</div>
+<div id="lcdline" class="c_lcdline"></div>
+<ul class="level1" id="menucontainer"></ul>
+</div>
+</div>
+</div>
+</div>
+<div id="content_container">
+<div id="content" class="pageview">
+<div id="tabloading">
+<form class="record_item_edit_form standard_form" id="loading_form">
+<div class="edit_form_tab_content_container">
+<div class="edit_form_tab_content tab1 active">
+<fieldset><div class="loadingIcon" style="width: 100%;"></div></fieldset>
+</div>
+</div>
+</form>
+</div>
+<div id="tabtarget"></div>
+</div>
+</div>
+<div class="CLEAR"></div>
+</div>
+</div>
+<div class="CLEAR"></div>
+</div>
+</div>
+</div>
+<div id="footer_container">
+<div id="footer">
+<div id="servicenav_container">
+<p id="copyright">
+© 2017 <a href="http://www.solar-log.com/">Solare Datensysteme GmbH</a> &nbsp;|&nbsp; <a href="mailto:info@solar-log.com">info@solar-log.com</a>
+<span>Build Revision: <span id="build_revision"></span></span>
+</p>
+<ul id="servicenav" style="display:none">
+<li class="logout button">
+<a class="button" href="#" action="logout" onclick="doLogout()">
+<span class="SDSI18N" name="L_LOGOUT">Abmelden</span>
+</a>
+<form id="logout" name="user_logout" action="logout" method="get">
+<div class="HIDDEN">
+<input type="hidden" name="action" value="logout">
+</div>
+</form>
+</li>
+<li class="login button">
+<a class="button" href="#">
+<span class="SDSI18N" name="L_LOGIN">Anmelden</span>
+</a>
+<div class="login_box extended_service">
+<div id="login_form">
+<form id="loginform" class="standard_form no_loader_form autocomplete" action="login">
+<div class="form_row">
+<label for="user"><span class="SDSI18N" name="L_LOGINTYPE">Anmeldung als</span></label>
+
+<div class="field_container input_field_container input_field_medium">
+<select class="field" id="user" name="u">
+<option value="user" class="SDSI18N" name="L_USR_USER">Benutzer</option>
+<option value="admin" class="SDSI18N" name="L_USR_ADMIN">Installateur</option>
+<option value="installer" class="SDSI18N" name="L_USR_INSTALLER">Installateur/PM</option>
+</select>
+</div>
+</div>
+<div class="form_row">
+<label for="pass"><span class="SDSI18N" name="L_PASSWORD">Passwort</span></label>
+<div class="field_container input_field_container input_field_medium">
+<input class="field" type="password" id="password" name="p" value="" autocomplete="off">
+</div>
+</div>
+<div id="errmess" class="form_row">
+<label for="errmess"><span class="SDSI18N" name="L_LOGINFAIL">Anmeldefehler</span></label>
+<input type="hidden" name="errmess" value="">
+</div>
+<div class="form_row button_row">
+<input class="submit_button" type="submit" name="submit" value="Login">
+</div>
+<div class="HIDDEN">
+<input type="hidden" name="action" value="login">
+</div>
+</form>
+</div>
+<div class="extended_service_bottom"></div>
+</div>
+</li>
+</ul>
+<p id="loginlvlinfo" style="display:none;">
+<span class="SDSI18N" name="L_LOGGED_IN_AS">angemeldet als</span>: <span id="loginlvl"></span>
+<span id="accesslvltxt" style="display:none;"> | <span class="SDSI18N" name="L_ACCESS_LVL">Berechtigungsstufe</span>: <span id="accesslvl"></span></span>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>function loadScript(file_path,options,callback){function _dom_eval(code){if(code!==undefined&&code.length>0){var _script=document.createElement("script");_script.innerHTML=code;document.head.appendChild(_script).parentNode.removeChild(_script)}if(typeof(callback)==="function"){callback()}}loadFile(file_path,_dom_eval,options)}function loadCSS(file_path,options,callback){function _dom_eval(code){if(code!==undefined&&code.length>0){var _style=document.createElement("style");_style.innerHTML=code;document.head.appendChild(_style)}if(typeof(callback)==="function"){callback()}}loadFile(file_path,_dom_eval,options)}function loadFile(file_path,callback,options){if(typeof(file_path)!=="string"){return}if(typeof(options)!=="object"){options={}}options.data={};if(options.type!=="GET"){options.type="GET"}if(typeof(options.async)!=="boolean"){options.async=true}if(options.cache==="revision"||typeof(options.cache)!=="boolean"){var _regexp=new RegExp(/\?/);file_path+=(_regexp.test(file_path)?"&":"?")+"_="+svn_revision;options.cache=true}options.url=file_path;options.callback=callback;if(window.$===undefined||window.$.ajax===undefined){try{query_via_XHR(options)}catch(e){console.error("error from query_via_XHR: "+e);if(typeof(callback)==="function"){callback()}}}else{options.error=function(){console.error("error loading file "+file_path);if(typeof(callback)==="function"){callback()}};options.success=function(data){if(typeof(callback)==="function"){callback(data)}};$.ajax(options)}}var _origin_hide;var _origin_show;function query_via_XHR(options){if(typeof(options)!=="object"){throw"invalid options object given"}if(options.method===undefined){options.method="GET"}else{if(typeof(options.method)!=="string"||options.method!=="GET"){throw"invalid method given"}}if(typeof(options.url)!=="string"){throw"invalid url given"}if(typeof(options.async)!=="boolean"){options.async=true}var _regexp=new RegExp(/\?/);if(options.cache===false){options.url+=(_regexp.test(options.url)?"&":"?")+"_="+Date.now()}else{if(options.cache==="revision"){options.url+=(_regexp.test(options.url)?"&":"?")+"_="+svn_revision}}var _contenttype="";if(options.url.search(".html")!==-1){_contenttype="text/html"}else{if(options.url.search(".css")!==-1){_contenttype="text/css"}else{if(options.url.search(".js")!==-1){_contenttype="application/javascript"}else{if(options.url.search(".json")!==-1){_contenttype="application/json"}else{throw"unsupported content-type given ("+options.url+")"}}}}var xmlhttp=new XMLHttpRequest();xmlhttp.open(options.method,options.url,options.async);xmlhttp.setRequestHeader("Content-Type",_contenttype);xmlhttp.onreadystatechange=function(){if(xmlhttp.readyState===4){if(xmlhttp.status<400){if(typeof(options.callback)==="function"){options.callback(xmlhttp.responseText)}}else{throw"response error received"}}};xmlhttp.send()}var svn_revision=Date.now()+"";var files_to_load=[{file:"0/main.css",options:{cache:"revision"}},{file:"compressed.js",options:{cache:"revision"}},{file:"jquery.jqplot.css",options:{cache:"revision"}},{file:"0/content.css",options:{cache:"revision"}},{file:"icons.css",options:{cache:"revision"}},{file:"jquery-ui.css",options:{cache:"revision"}},{file:"jquery.timepicker.css",options:{cache:"revision"}}];function load_next_file_from_queue(finished_callback){if(files_to_load.length>0){var _next_file=files_to_load.splice(0,1)[0];if(_next_file.file.search(".css")!==-1){loadCSS(_next_file.file,_next_file.options,load_next_file_from_queue.bind(null,finished_callback))}else{if(_next_file.file.search(".js")!==-1){loadScript(_next_file.file,_next_file.options,load_next_file_from_queue.bind(null,finished_callback))}else{console.error("undefined filetype in files_to_load: "+_next_file.file);finished_callback()}}}else{finished_callback()}}window.onload=function(){loadFile("revision.html",function(data){var _rev_elem;if(typeof(data)==="string"){svn_revision=data.split(" ")[0];_rev_elem=document.getElementById("build_revision");if(_rev_elem!==null){_rev_elem.innerHTML=data}}else{console.warn("error from revision.html");_rev_elem=document.getElementById("build_revision");if(_rev_elem!==null){_rev_elem.innerHTML="Error"}}load_next_file_from_queue(initialize_page)},{cache:false})};function initialize_page(){hide_fullsize_loader();install_loginbtn_handler();install_nav_click_handler();install_lang_click_handler();if(getCookie("banner_hidden")==="true"){hideBanner()}else{showBanner()}var params=getURLParameters(this.document.URL);if(params.ilang!==undefined){sdsSetLanguage(params.ilang)}_origin_hide=$.fn.hide;_origin_show=$.fn.show;$.fn.hide=function(){if($(this).prop("tagName")=="OPTION"){$(this).prop("disabled",true)}return _origin_hide.apply($(this),arguments)};$.fn.show=function(){if($(this).prop("tagName")=="OPTION"){$(this).prop("disabled",false)}return _origin_show.apply($(this),arguments)};TheDisplay=$("#jh_lcd_display3").lcdisplay({background:"rgb(230,230,230)",inactiveColor:"rgb(190,190,190)",activeColor:"rgb(10,10,10)",width:100,item:{easy:false,gprs:false,wifi:false,bat:false,bat1:false,bat2:false,bat3:false,bat4:false,sig:0,t1:false,t2:false,t3:false,t4:false,t5:false,t6:false,t7:false,t8:false,t9:false,t10:false,t11:false,aa:false,ab:false,ac:false,ad:false,ae:false,af:false,ag:false,ah:false,ai:false,aj:false,ak:false,al:false,am:false,an:false,ba:false,bb:false,bc:false,bd:false,be:false,bf:false,bg:false,bh:false,bi:false,bj:false,bk:false,bl:false,bm:false,bn:false}});quManager.add_qu("lcdstate",{parameter:"794:0;701",callback:lcdcallback,global:true,active:false});updateHWOption(function(){quManager.activate_qu("lcdstate");if(config_assist.is_config_assist_dialog(params.b)){config_assist.continue_config_assist(params.b)}else{if(!EasyDone){nav.jump_to_tab("e_lang")}else{if(EasyRunning){config_assist.continue_config_assist("ca_devices")}else{queryData(true,"801:781;",function(data){if(data!==undefined&&data[801][781]===1){sl_task_active=data[801][781];nav.jump_to_tab("c_system_firmware")}else{if(data!==undefined&&data[801][781]===2){sl_task_active=data[801][781];nav.jump_to_tab("c_devicedetect_detect")}else{if(params.tth!==undefined){tabs_to_hide=params.tth}if(params.b!==undefined){nav.find_alias(params.b,function(result){if(result!==undefined){nav.jump_to_tab(params.b)}else{nav.jump_to_tab("p_live_cockpit")}})}else{nav.jump_to_tab("p_live_cockpit")}}}})}}}lcdtimefunc();window.setTimeout(function(){if(epoch_manager.getState()==="NOT_INITIALIZED"){epoch_manager.loadEpochs()}},20000)})}function show_fullsize_loader(){var _elem=document.getElementById("fullsize_loader");if(_elem===null||_elem===undefined){var _container=document.createElement("div");_container.id="fullsize_loader";_container.classList.add("save_layer_container");var _save_layer=document.createElement("div");_save_layer.classList.add("save_layer");_container.appendChild(_save_layer);var _transparent_back=document.createElement("div");_transparent_back.classList.add("transparent_background");_save_layer.appendChild(_transparent_back);var _loading_icon=document.createElement("div");_loading_icon.classList.add("loadingIconFullsize");_save_layer.appendChild(_loading_icon);var _ctx=document.getElementById("full_page_loader");_ctx.appendChild(_container)}}function hide_fullsize_loader(){var _elem=document.getElementById("fullsize_loader");_elem.parentElement.removeChild(_elem)}window.onerror=function(msg,file,line,col,error){if(typeof(SLdialogManager)!=="undefined"&&typeof(getText)==="function"){var _txt=getText("T_JS_ERROR");_txt+="<br><br>"+getText("L_ORIG_ERRDESCR")+":<br>"+msg;SLdialogManager.addDialog("js_error",{title:getText("L_ERROR"),text:_txt,important:true,buttons:[{id:"ok",name:getText("L_OK")}]},true).show("js_error")}else{if(typeof(getText)==="function"){alert(getText("L_ERROR")+":\n\n"+getText("T_JS_ERROR").replace(/<br>/g,"\n")+"\n\n"+getText("L_ORIG_ERRDESCR")+":\n"+msg)}else{alert("Error:\n\nAn error has occurred.\nPlease reload the page.\nIt may also help to clear the browser cache.\nIf the error persists, please contact the support.\nA detailed error description is necessary. This includes:\n* the firmware version of the Solar-Log™\n* the used browser\n* the action, which leads to this issue (was a particular page or function called?)\n* a screenshot of this dialog\n\nOriginal error description:\n"+msg)}}return false};</script>
+</body>
+</html>

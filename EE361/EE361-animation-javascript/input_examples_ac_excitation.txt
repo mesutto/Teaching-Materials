@@ -1,0 +1,8 @@
+Girdileri girince baþlýyor.
+
+Seri 1:	delta = 30; wE = wM = 10; Imax = 1; // Imax = 1 to see acceleration on animation
+Seri 2:	delta = 0; wE = wM = 10; Imax =1; // Taverage = 0 can seen clearly
+Seri 3:	delta = 0; wE = 10; wM = 100; Imax = 1 // as expected
+Seri 4:	delta = 0; wE = 100; wM = 10; Imax = 1 // as expected
+Seri 5:	delta = 20; wE = 30; wM = 10; Imax = 1 // Taverage = 0 as expected.  
+ 
