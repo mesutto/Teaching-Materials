@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dc motor - DC excite</title>
+  </head>
+  <body>
+    <div align="right" id="chartContainer" style="height: 270px; width: 500;"></div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <style>
+    body {
+    background-color: ivory;
+    }
+    canvas {
+    border:1px solid red;
+    }
+    div.form {
+    position:absolute;
+    top: 320;
+    left:270;
+    }
+    </style>
+    <canvas id="canvas" width=250 height=350></canvas>
+    <div id="form" >
+    <form id="info">
+     Delta:  &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+     &emsp; Angular velocity(rad/s)
+    <br>
+    <input size=5 type="number" name="delta" id="delta" />
+     &emsp; &emsp; &emsp;
+    <input type="text" name="velocityinfo" id="velocityinfo" readonly="true"/>
+    <br>
+    <br>w(electric)
+    <br>
+    <input size=5 type="number" name="wE" id="wE" />
+    <br>
+    <br>w(mechanical)
+    <br>
+    <input size=5 type="number" name="wM" id="wM" />
+    <br>
+    <br>Imax(magnitude)
+    <br>
+    <input size=5 type="number" name="imax" id="imax" />
+    <br>
+    <input type="submit" value="Submit" />
+    </form>
+    </div>
+    <script src="ac_script.js"></script>
+  </body>
+</html>
